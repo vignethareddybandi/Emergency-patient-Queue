@@ -1,0 +1,126 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+class Patient {
+    int id;
+    String name;
+    int age;
+    String problem;
+
+    Patient(int id, String name, int age, String problem) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.problem = problem;
+    }
+
+    void display() {
+        System.out.println("\nPatient ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Problem: " + problem);
+    }
+}
+
+public class EmergencyPatientQueue {
+
+    static Scanner sc = new Scanner(System.in);
+    static Queue<Patient> patients = new LinkedList<>();
+    static int id = 1;
+
+    static void addPatient() {
+
+        System.out.print("Enter patient name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter age: ");
+        int age = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter problem: ");
+        String problem = sc.nextLine();
+
+        Patient patient = new Patient(id, name, age, problem);
+
+        patients.add(patient);
+
+        System.out.println("\nPatient added to emergency queue.");
+        System.out.println("Patient ID: " + id);
+
+        id++;
+    }
+
+    static void treatPatient() {
+
+        if (patients.isEmpty()) {
+            System.out.println("\nNo patients in the queue.");
+            return;
+        }
+
+        Patient patient = patients.poll();
+
+        System.out.println("\n===== TREATING PATIENT =====");
+        patient.display();
+        System.out.println("\nPatient treatment started.");
+    }
+
+    static void viewQueue() {
+
+        if (patients.isEmpty()) {
+            System.out.println("\nNo patients in the queue.");
+            return;
+        }
+
+        System.out.println("\n===== EMERGENCY QUEUE =====");
+
+        for (Patient patient : patients) {
+            patient.display();
+        }
+    }
+
+    public static void main(String[] args) {
+
+        int choice;
+
+        do {
+
+            System.out.println("\n==============================");
+            System.out.println("   EMERGENCY PATIENT QUEUE");
+            System.out.println("==============================");
+            System.out.println("1. Add Patient");
+            System.out.println("2. Treat Patient");
+            System.out.println("3. View Queue");
+            System.out.println("4. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+
+                case 1:
+                    addPatient();
+                    break;
+
+                case 2:
+                    treatPatient();
+                    break;
+
+                case 3:
+                    viewQueue();
+                    break;
+
+                case 4:
+                    System.out.println("\nThank you!");
+                    break;
+
+                default:
+                    System.out.println("\nInvalid choice.");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
