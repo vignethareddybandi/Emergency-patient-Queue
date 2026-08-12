@@ -1,0 +1,16 @@
+==============================
+   EMERGENCY PATIENT QUEUE
+==============================
+1. Add Patient
+2. Treat Patient
+3. View Queue
+4. Exit
+
+Enter your choice: 1
+
+Enter patient name: Rahul
+Enter age: 25
+Enter problem: High fever
+
+Patient added to emergency queue.
+Patient ID: 1
